@@ -1,4 +1,5 @@
 const { google } = require("googleapis");
+const { sasportal } = require("googleapis/build/src/apis/sasportal");
 
 async function getValuesFromSpreadSheet() {
   const auth = new google.auth.GoogleAuth({
@@ -24,25 +25,52 @@ async function getValuesFromSpreadSheet() {
   });
   return getRows.data.values;
 }
+var sortAlphabets = function (text) {
+  return text.split('').sort().join('');
+};
+
+function getPercentageOfNameFromName(name1, name2) {
+  var k = 0;
+  if (name1.length > name2.length) {
+    var aux = name1;
+    name1 = name2;
+    name2 = aux;
+  }
+  for (let i = 0; i < name1.length; i++)
+    for (let j = k - 1; j < name2.length; j++)
+      if (name1.charAt(i) == name2.charAt(j)) {
+        k++;
+        break;
+      }
+  console.log(name1 + " " + name2 + " au " + k + " litere comune");
+  console.log(k / name2.length);
+  return k / name2.length;
+}
+function Nimicto0(valoare)
+{
+  if(valoare=="")
+    return 0;
+  return valoare
+}
 async function getHoursForGivenName(nume, project) {
   let values = await getValuesFromSpreadSheet();
-  var projectNumber=1;
-  var k=0;
+  var k = 0
   for (let i = 2; i < values.length; i++) {
-    if (nume === values[i][0]) {
-      if(values != 1){
-          for( let j = 0 ; j < 50; j++){
-            if(project == values[0][j])
-              {
-                projectNumber = j;
-                console.log(values[i][j]);
-                break;
-              }
+    if (values[i][0] != undefined) {
+      console.log(values[i][0]);
+      if (getPercentageOfNameFromName(nume, sortAlphabets(values[i][0].replace(/-| /gi, "").toLowerCase())) > 0.9) {
+        if (project != 1) {
+          for (let j = 2; j < values[i].length; j += 2) {
+            if (project == values[0][j]) {
+              return [parseInt(Nimicto0(values[i][j]))+parseInt(Nimicto0(values[i][j+1])), values[i][0]];
+            }
           }
+          return [-2, ""];
         }
-      return values[i][projectNumber];
+        return [values[i][1],values[i][0]];
+      }
     }
   }
-  return "NU EXISTA NUMELE";
+  return [-1, ""];
 }
 module.exports = { getHoursForGivenName };
