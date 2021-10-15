@@ -37,12 +37,16 @@ module.exports = {
             for (let i = k + 1; i < arguments.length; i++) {
                 project = project + " " + args[i];
             }
+        
+        project=project.replace(/-| /gi, "").toLowerCase()
+
         }
         else {
             project = 1;
         }
-        getHoursFromSpreadSheet.getHoursForGivenName(sortAlphabets(numeLowerCase), project).then(res => {
-            //console.log(res);
+        
+        getHoursFromSpreadSheet.getHoursForGivenName(sortAlphabets(numeLowerCase), sortAlphabets(project) ).then(res => {
+            console.log(res);
             switch (res[0])
             {
                 case -1:{
@@ -59,7 +63,7 @@ module.exports = {
                     if(project==1)
                         message.author.send(res[1] + " are: " + res[0] + " ore in total");
                     else
-                        message.author.send(res[1] + " are: " + res[0] + " ore la proiectul " + project);
+                        message.author.send(res[1] + " are: " + res[0] + " ore la proiectul " + res[2]);
                 }
 
             }
