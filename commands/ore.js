@@ -1,11 +1,9 @@
-const e = require("express");
 const getHoursFromSpreadSheet = require("./GoogleAPI");
 module.exports = {
     name: 'ore',
     description: "this command show how many hours a given name has in a SpreadSheet",
     execute(message, args) {
         var k = 0;
-
         var nume = args[0];
         const arguments = Array.from(args);
         for (let i = 1; i < arguments.length; i++) {
@@ -17,12 +15,6 @@ module.exports = {
                 break;
             }
         }
-        var numeLowerCase = nume.toString().toLowerCase();
-        numeLowerCase = numeLowerCase.replace(/-| /gi, "");
-        var sortAlphabets = function (text) {
-            return text.split('').sort().join('');
-        };
-        //console.log(numeLowerCase);
         var comanda = args[k];
         for (let i = k + 1; i < arguments.length; i++) {
             if (args[i - 1] != "ore")
@@ -41,9 +33,11 @@ module.exports = {
         project=project.replace(/-| /gi, "").toLowerCase()
 
         }
-        else {
-            project = 1;
+        else 
+        {
+            project=1;
         }
+<<<<<<< HEAD
         
         getHoursFromSpreadSheet.getHoursForGivenName(sortAlphabets(numeLowerCase), sortAlphabets(project) ).then(res => {
             console.log(res);
@@ -79,6 +73,14 @@ module.exports = {
             //             message.author.send(nume + " are: " + res + " ore la proiectul " + project);
 
         });
+=======
+            getHoursFromSpreadSheet.getHoursForGivenName(nume, project).then(res => {
+                if(project === 1)
+                    message.author.send(nume + " are: " + res + " ore in total");
+                else
+                    message.author.send(nume + " are: " + res + " ore la proiectul: "+ project);
+            });
+>>>>>>> parent of c0571a4 (<Versiunea 3 aproximari de numa>)
 
     }
 }
