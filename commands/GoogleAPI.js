@@ -4,7 +4,7 @@ const { sasportal } = require("googleapis/build/src/apis/sasportal");
 
 async function getValuesFromSpreadSheet() {
   const auth = new google.auth.GoogleAuth({
-    keyFile: "C:\\Users\\stefa\\OneDrive\\Desktop\\DiscordBot\\credentials.json",
+    keyFile: "credentials.json",
     scopes: "https://www.googleapis.com/auth/drive",
 
   });
