@@ -1,1 +1,1 @@
-worker.js
+web: node .

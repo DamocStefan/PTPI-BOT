@@ -2,9 +2,12 @@
   "name": "discordbot",
   "version": "1.0.0",
   "description": "",
+  "engines": {
+    "node": "14.x"
+  },
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test.js"
   },
   "author": "",
   "license": "ISC",
@@ -13,5 +16,19 @@
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "googleapis": "^88.2.0"
-  }
+  },
+  "devDependencies": {
+    "got": "^11.3.0",
+    "tape": "^4.7.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DamocStefan/PTPI-BOT"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ]
+
 }

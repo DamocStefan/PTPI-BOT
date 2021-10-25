@@ -17,68 +17,63 @@ module.exports = {
                 break;
             }
         }
-        var numeLowerCase = nume.toString().toLowerCase();
-        numeLowerCase = numeLowerCase.replace(/-| /gi, "");
-        var sortAlphabets = function (text) {
-            return text.split('').sort().join('');
-        };
-        //console.log(numeLowerCase);
-        var comanda = args[k];
-        for (let i = k + 1; i < arguments.length; i++) {
-            if (args[i - 1] != "ore")
-                comanda = comanda + " " + args[i];
-            else {
-                k = i;
-                break;
-            }
-        }
-        if (comanda === "te rog frumos ore") {
-            var project = args[k];
-            for (let i = k + 1; i < arguments.length; i++) {
-                project = project + " " + args[i];
-            }
-        
-        project=project.replace(/-| /gi, "").toLowerCase()
-
-        }
+        if (nume == "Trifoita")
+            message.author.send("Trifoita are asa de multe ore incat are nevoie de un site special, incearca: " + "\n" + "<https://bit.ly/3lNSrxz>");
         else {
-            project = 1;
-        }
-        
-        getHoursFromSpreadSheet.getHoursForGivenName(sortAlphabets(numeLowerCase), sortAlphabets(project) ).then(res => {
-            console.log(res);
-            switch (res[0])
-            {
-                case -1:{
-                    message.author.send("Nu am gasit numele, introdu un nume valid");
-                    break;
+            if (nume == "Octav")
+                message.author.send("Octav are asa de multe ore incat are nevoie de un site special, incearca: " + "\n" + "<https://bit.ly/3lNSrxz>");
+            else {
+                var numeLowerCase = nume.toString().toLowerCase();
+                numeLowerCase = numeLowerCase.replace(/-| /gi, "");
+                var sortAlphabets = function (text) {
+                    return text.split('').sort().join('');
+                }
+                //console.log(numeLowerCase);
+                var comanda = args[k];
+                for (let i = k + 1; i < arguments.length; i++) {
+                    if (args[i - 1] != "ore")
+                        comanda = comanda + " " + args[i];
+                    else {
+                        k = i;
+                        break;
+                    }
+                }
+                if (comanda === "te rog frumos ore") {
+                    var project = args[k];
+                    for (let i = k + 1; i < arguments.length; i++) {
+                        project = project + " " + args[i];
+                    }
+                    //console.log(project);
+
+                    project = project.replace(/-| /gi, "").toLowerCase();
+
+                }
+                else {
+                    project = "";
                 }
 
-                case -2:{
-                    message.author.send("Nu am gasit proiectul");
-                    break;
-                }
-    
-                default:{
-                    if(project==1)
-                        message.author.send(res[1] + " are: " + res[0] + " ore in total");
-                    else
-                        message.author.send(res[1] + " are: " + res[0] + " ore la proiectul " + res[2]);
-                }
+                getHoursFromSpreadSheet.getHoursForGivenName(sortAlphabets(numeLowerCase), sortAlphabets(project)).then(res => {
+                    console.log(res);
+                    switch (res[0]) {
+                        case -1: {
+                            message.channel.send("Nu am gasit numele, introdu un nume valid");
+                            break;
+                        }
 
+                        case -2: {
+                            message.channel.send("Nu am gasit proiectul");
+                            break;
+                        }
+                        default: {
+                            if (project == "")
+                                message.channel.send(res[1] + " are: " + res[0] + " ore in total");
+                            else
+                                message.channel.send(res[1] + " are: " + res[0] + " ore la proiectul " + res[2]);
+                        }
+                    }
+                });
             }
-            // if (res === -1)
-            //     message.author.send("Nu am gasit numele, introdu un nume valid");
-            // else
-            //     if (res == -3)
-            //         message.author.send("Nu am gasit proiectul");
-            //     else
-            //         if (project === 1)
-            //             message.author.send(nume + " are: " + res + " ore in total");
-            //         else
-            //             message.author.send(nume + " are: " + res + " ore la proiectul " + project);
-
-        });
+        }
 
     }
 }
