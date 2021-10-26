@@ -53,7 +53,6 @@ module.exports = {
                 }
 
                 getHoursFromSpreadSheet.getHoursForGivenName(sortAlphabets(numeLowerCase), sortAlphabets(project)).then(res => {
-                    console.log(res);
                     switch (res[0]) {
                         case -1: {
                             message.channel.send("Nu am gasit numele, introdu un nume valid");
