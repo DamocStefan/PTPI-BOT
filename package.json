@@ -7,8 +7,8 @@
   },
   "main": "main.js",
   "scripts": {
-    "test": "node test.js"
-  },
+    "start": "node index.js"
+ }
   "author": "",
   "license": "ISC",
   "dependencies": {
