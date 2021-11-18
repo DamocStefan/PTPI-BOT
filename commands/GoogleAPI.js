@@ -61,7 +61,7 @@ async function getHoursForGivenName(nume, project) {
       if (getPercentageOfNameFromName(nume, sortAlphabets(values[i][0].replace(/-| /gi, "").toLowerCase())) > 0.9) {
         if (project != "") {
           //console.log(values[0].length);
-          for (let j = 3; j < values[0].length; j += 2) {
+          for (let j = 2; j < values[0].length; j += 2) {
             if (getPercentageOfNameFromName(project, sortAlphabets(values[0][j].replace(/-| /gi, "").toLowerCase())) > 0.9) {
               if(parseInt(Nimicto0(values[i][j]))+parseInt(Nimicto0(values[i][j+1]))==0)
                 return [0, values[i][0], values[0][j]];
