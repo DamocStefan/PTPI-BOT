@@ -49,7 +49,7 @@ function getPercentageOfNameFromName(name1, name2) {
 }
 function Nimicto0(valoare)
 {
-  if(valoare=="" || valoare== undefined || valoare.replace(/-| /gi, "") == "x")
+  if(isNaN(valoare)==1)
     return 0;
   return valoare
 }
@@ -57,7 +57,8 @@ async function getHoursForGivenName(nume, project) {
   let values = await getValuesFromSpreadSheet();
   var k = 0;
   for (let i = 2; i < values.length; i++) {
-    if (values[i][0] != undefined) {
+    if (typeof(values[i][0])== "string" ) {
+      console.log(values[i][0]);
       if (getPercentageOfNameFromName(nume, sortAlphabets(values[i][0].replace(/-| /gi, "").toLowerCase())) > 0.9) {
         if (project != "") {
           //console.log(values[0].length);
