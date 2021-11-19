@@ -1,6 +1,5 @@
 const { Collection } = require("discord.js");
 const { google } = require("googleapis");
-const { sasportal } = require("googleapis/build/src/apis/sasportal");
 
 async function getValuesFromSpreadSheet() {
   const auth = new google.auth.GoogleAuth({
@@ -26,6 +25,7 @@ async function getValuesFromSpreadSheet() {
   });
   return getRows.data.values;
 }
+<<<<<<< HEAD
 var sortAlphabets = function (text) {
   return text.split('').sort().join('');
 };
@@ -71,11 +71,36 @@ async function getHoursForGivenName(nume, project) {
             }
           }
           return [-2, "", ""];
+=======
+async function getHoursForGivenName(nume, project) {
+  let values = await getValuesFromSpreadSheet();
+  var projectNumber=1;
+  var k=0;
+  for (let i = 2; i < values.length; i++) {
+    if (nume === values[i][0]) {
+      if(values != 1){
+          for( let j = 0 ; j < 50; j++){
+            if(project == values[0][j])
+              {
+                projectNumber = j;
+                console.log(values[i][j]);
+                break;
+              }
+          }
+>>>>>>> parent of c0571a4 (<Versiunea 3 aproximari de numa>)
         }
+<<<<<<< HEAD
         return [values[i][1] , values[i][0], ""];
       }
+=======
+      return values[i][projectNumber];
+>>>>>>> 8d055d29df55ac88cdc7529f610362ad11afd14c
     }
   }
+<<<<<<< HEAD
   return [-1, "", ""];
+=======
+  return "NU EXISTA NUMELE";
+>>>>>>> parent of c0571a4 (<Versiunea 3 aproximari de numa>)
 }
 module.exports = { getHoursForGivenName };
