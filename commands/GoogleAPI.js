@@ -28,6 +28,16 @@ async function getValuesFromSpreadSheet() {
 var sortAlphabets = function (text) {
   return text.split('').sort().join('');
 };
+var Latinise={};Latinise.latin_map={
+"Ă":"a",
+"ă":"a",
+"Ș":"s",
+"ș":"s",
+"Ț":"t",
+"ț":"t",
+"Â":"a",
+"â":"a",
+" ": ""};
 
 function getPercentageOfNameFromName(name1, name2) {
   var k = 0;
@@ -53,16 +63,19 @@ function Nimicto0(valoare)
   return valoare
 }
 async function getHoursForGivenName(nume, project) {
+  
   let values = await getValuesFromSpreadSheet();
   var k = 0;
+  let name = "";
   for (let i = 2; i < values.length; i++) {
     if (typeof(values[i][0])== "string" ) {
-      console.log(values[i][0]);
-      if (getPercentageOfNameFromName(nume, sortAlphabets(values[i][0].replace(/-| /gi, "").toLowerCase())) > 0.9) {
+      String.prototype.latinise=function(){return this.replace(/[^A-Za-z0-9\[\] ]/g,function(a){return Latinise.latin_map[a]||a})};
+      console.log(values[i][0].latinise().toLowerCase().replace(/-| /gi, ""));
+      if (getPercentageOfNameFromName(nume, sortAlphabets(values[i][0].latinise().toLowerCase().replace(/-| /gi, ""))) > 0.9) {
         if (project != "") {
           //console.log(values[0].length);
           for (let j = 2; j < values[0].length; j += 2) {
-            if (getPercentageOfNameFromName(project, sortAlphabets(values[0][j].replace(/-| /gi, "").toLowerCase())) > 0.9) {
+            if (getPercentageOfNameFromName(project, sortAlphabets(values[0][j].latinise().replace(/-| /gi, "").toLowerCase())) > 0.9) {
               if(parseInt(Nimicto0(values[i][j]))+parseInt(Nimicto0(values[i][j+1]))==0)
                 return [0, values[i][0], values[0][j]];
               else 
