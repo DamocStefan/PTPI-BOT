@@ -38,23 +38,23 @@ var Latinise={};Latinise.latin_map={
 "Â":"a",
 "â":"a",
 " ": ""};
+function isBlank(str) {
+  return !(typeof(str[0])== "undefined");
+}
 
 function getPercentageOfNameFromName(name1, name2) {
-  var k = 0;
-  if (name1.length < name2.length) {
-    var aux = name1;
-    name1 = name2;
-    name2 = aux;
-  }
-  for (let i = 0; i < name1.length; i++)
-    for (let j = i ; j < name2.length || name2.charAt(j); j++)
-      if (name1.charAt(i) == name2.charAt(j)) {
-        k++;
-        break;
-      }
-  //console.log(name1 + " " + name2 + " au " + k + " litere comune");
-  //console.log(k / name2.length);
-  return k / name1.length;
+  var k=0;
+  var ff= new Array(26).fill(0);
+  for(let i=0;i<name2.length;i++)
+    ff[name2[i].charCodeAt(0)-"a".charCodeAt(0)]++;
+  for(let i=0;i<name1.length;i++)
+    ff[name1[i].charCodeAt(0)-"a".charCodeAt(0)]--;
+  var n=Math.max(name1.length,name2.length);
+  for(let i=0;i<n && k<2 ;i++)
+    if(ff[i]!=0)
+      k++;
+  console.log(ff);
+  return k<2;
 }
 function Nimicto0(valoare)
 {
@@ -62,20 +62,22 @@ function Nimicto0(valoare)
     return 0;
   return valoare
 }
+
 async function getHoursForGivenName(nume, project) {
   
   let values = await getValuesFromSpreadSheet();
   var k = 0;
   let name = "";
+  String.prototype.latinise=function(){return this.replace(/[^A-Za-z0-9\[\] ]/g,function(a){return Latinise.latin_map[a]||a})};
   for (let i = 2; i < values.length; i++) {
     if (typeof(values[i][0])== "string" ) {
-      String.prototype.latinise=function(){return this.replace(/[^A-Za-z0-9\[\] ]/g,function(a){return Latinise.latin_map[a]||a})};
-      console.log(values[i][0].latinise().toLowerCase().replace(/-| /gi, ""));
-      if (getPercentageOfNameFromName(nume, sortAlphabets(values[i][0].latinise().toLowerCase().replace(/-| /gi, ""))) > 0.9) {
+      console.log(values[i][0]);
+      if (isBlank(values[i][0]))
+      if (getPercentageOfNameFromName(nume, sortAlphabets(values[i][0].latinise().toLowerCase().replace(/-| /gi, ""))) ) {
         if (project != "") {
-          //console.log(values[0].length);
+          //console.log(values[0][.length)];
           for (let j = 2; j < values[0].length; j += 2) {
-            if (getPercentageOfNameFromName(project, sortAlphabets(values[0][j].latinise().replace(/-| /gi, "").toLowerCase())) > 0.9) {
+            if (getPercentageOfNameFromName(project, sortAlphabets(values[0][j].latinise().replace(/-| /gi, "").toLowerCase()))) {
               if(parseInt(Nimicto0(values[i][j]))+parseInt(Nimicto0(values[i][j+1]))==0)
                 return [0, values[i][0], values[0][j]];
               else 
