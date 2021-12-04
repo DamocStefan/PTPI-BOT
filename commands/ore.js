@@ -9,7 +9,7 @@ module.exports = {
         var nume = args[0];
         const arguments = Array.from(args);
         for (let i = 1; i < arguments.length; i++) {
-            if (args[i] != "te") {
+            if (args[i] != "proiect") {
                 nume = nume + " " + args[i];
             }
             else {
@@ -25,13 +25,10 @@ module.exports = {
             else {
                 var numeLowerCase = nume.toString().toLowerCase();
                 numeLowerCase = numeLowerCase.replace(/-| /gi, "");
-                var sortAlphabets = function (text) {
-                    return text.split('').sort().join('');
-                }
-                //console.log(numeLowerCase);
+
                 var comanda = args[k];
                 for (let i = k + 1; i < arguments.length; i++) {
-                    if (args[i - 1] != "ore")
+                    if (args[i - 1] != "proiect")
                         comanda = comanda + " " + args[i];
                     else {
                         k = i;
@@ -43,8 +40,6 @@ module.exports = {
                     for (let i = k + 1; i < arguments.length; i++) {
                         project = project + " " + args[i];
                     }
-                    //console.log(project);
-
                     project = project.replace(/-| /gi, "").toLowerCase();
 
                 }
