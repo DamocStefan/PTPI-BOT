@@ -38,7 +38,7 @@ module.exports = {
                         break;
                     }
                 }
-                if (comanda === "te rog frumos ore") {
+                if (comanda === "proiect") {
                     var project = args[k];
                     for (let i = k + 1; i < arguments.length; i++) {
                         project = project + " " + args[i];
@@ -52,7 +52,7 @@ module.exports = {
                     project = "";
                 }
 
-                getHoursFromSpreadSheet.getHoursForGivenName(sortAlphabets(numeLowerCase), sortAlphabets(project)).then(res => {
+                getHoursFromSpreadSheet.getHoursForGivenName(numeLowerCase, project).then(res => {
                     switch (res[0]) {
                         case -1: {
                             message.channel.send("Nu am gasit numele, introdu un nume valid");
