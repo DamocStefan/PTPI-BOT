@@ -49,11 +49,10 @@ function getPercentageOfNameFromName(name1, name2) {
     ff[name2[i].charCodeAt(0)-"a".charCodeAt(0)]++;
   for(let i=0;i<name1.length;i++)
     ff[name1[i].charCodeAt(0)-"a".charCodeAt(0)]--;
-  var n=Math.max(name1.length,name2.length);
-  for(let i=0;i<n && k<2 ;i++)
+  for(let i=0;i<27 && k<2 ;i++)
     if(ff[i]!=0)
       k++;
-  //console.log(ff);
+  // console.log(ff+ k);
   return k<2;
 }
 function Nimicto0(valoare)
@@ -71,7 +70,7 @@ async function getHoursForGivenName(nume, project) {
   String.prototype.latinise=function(){return this.replace(/[^A-Za-z0-9\[\] ]/g,function(a){return Latinise.latin_map[a]||a})};
   for (let i = 2; i < values.length; i++) {
     if (typeof(values[i][0])== "string" ) {
-      //console.log(values[i][0]);
+      // console.log(values[i][0]);
       if (isBlank(values[i][0]))
       if (getPercentageOfNameFromName(nume, values[i][0].latinise().toLowerCase().replace(/-| /gi, "")) ) {
         if (project != "") {
