@@ -53,7 +53,7 @@ function getPercentageOfNameFromName(name1, name2) {
   for(let i=0;i<n && k<2 ;i++)
     if(ff[i]!=0)
       k++;
-  console.log(ff);
+  //console.log(ff);
   return k<2;
 }
 function Nimicto0(valoare)
@@ -71,17 +71,19 @@ async function getHoursForGivenName(nume, project) {
   String.prototype.latinise=function(){return this.replace(/[^A-Za-z0-9\[\] ]/g,function(a){return Latinise.latin_map[a]||a})};
   for (let i = 2; i < values.length; i++) {
     if (typeof(values[i][0])== "string" ) {
-      console.log(values[i][0]);
+      //console.log(values[i][0]);
       if (isBlank(values[i][0]))
-      if (getPercentageOfNameFromName(nume, sortAlphabets(values[i][0].latinise().toLowerCase().replace(/-| /gi, ""))) ) {
+      if (getPercentageOfNameFromName(nume, values[i][0].latinise().toLowerCase().replace(/-| /gi, "")) ) {
         if (project != "") {
-          //console.log(values[0][.length)];
           for (let j = 2; j < values[0].length; j += 2) {
-            if (getPercentageOfNameFromName(project, sortAlphabets(values[0][j].latinise().replace(/-| /gi, "").toLowerCase()))) {
-              if(parseInt(Nimicto0(values[i][j]))+parseInt(Nimicto0(values[i][j+1]))==0)
+            //console.log(values[0][j]);
+            if (getPercentageOfNameFromName(project, values[0][j].latinise().replace(/-| /gi, "").toLowerCase())) {
+              if(Nimicto0(parseInt(values[i][j]))+Nimicto0(parseInt(values[i][j+1]))==0){
+                console.log(values[i][0] + "are "+ values[0][j])
                 return [0, values[i][0], values[0][j]];
+              }
               else 
-                return [parseInt(Nimicto0(values[i][j]))+parseInt(Nimicto0(values[i][j+1])), values[i][0], values[0][j]];
+                return [Nimicto0(parseInt(values[i][j]))+Nimicto0(parseInt(values[i][j+1])), values[i][0], values[0][j]];
             }
           }
           return [-2, "", ""];
