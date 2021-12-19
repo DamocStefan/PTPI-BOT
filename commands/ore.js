@@ -46,7 +46,7 @@ module.exports = {
                 else {
                     project = "";
                 }
-
+                console.log(numeLowerCase);
                 getHoursFromSpreadSheet.getHoursForGivenName(numeLowerCase, project).then(res => {
                     switch (res[0]) {
                         case -1: {
