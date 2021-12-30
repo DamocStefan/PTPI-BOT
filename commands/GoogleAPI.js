@@ -70,9 +70,8 @@ async function getHoursForGivenName(nume, project) {
   String.prototype.latinise=function(){return this.replace(/[^A-Za-z0-9\[\] ]/g,function(a){return Latinise.latin_map[a]||a})};
   for (let i = 2; i < values.length; i++) {
     if (typeof(values[i][0])== "string" ) {
-      // console.log(values[i][0]);
       if (isBlank(values[i][0]))
-      if (getPercentageOfNameFromName(nume, values[i][0].latinise().toLowerCase().replace(/-| /gi, "")) ) {
+      if (getPercentageOfNameFromName(nume.latinise(), values[i][0].latinise().toLowerCase().replace(/-| /gi, "")) ) {
         if (project != "") {
           for (let j = 2; j < values[0].length; j += 2) {
             //console.log(values[0][j]);
