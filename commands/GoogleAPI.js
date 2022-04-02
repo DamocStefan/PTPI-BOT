@@ -1,4 +1,4 @@
-const { Collection } = require("discord.js");
+
 const { google } = require("googleapis");
 
 async function getValuesFromSpreadSheet() {
@@ -47,7 +47,7 @@ function getPercentageOfNameFromName(name1, name2) {
 }
 function Nimicto0(valoare)
 {
-  if(isNaN(valoare)==1)
+  if(isNaN(valoare)==1 || typeof valoare ==undefined)
     return 0;
   return valoare
 }
@@ -79,4 +79,24 @@ async function getHoursForGivenName(nume, project) {
   }
   return [-1, "", ""];
 }
-module.exports = { getHoursForGivenName };
+async function getTopHours(number)
+{
+  let values = await getValuesFromSpreadSheet();
+  values.sort(function(a, b) {
+    return Nimicto0(parseFloat(b[1])) - Nimicto0(parseFloat(a[1]));
+  })
+  var k=0;
+  let arr=new Array(number);
+  for(let i=1;i<=number;i++)
+    {
+      if((values[i][0]=="" ||values[i][0]== undefined || typeof values[i][0]== undefined))
+        number++;
+      console.log(values[i][0] + " " + values[i][1]);
+      arr[k]=new Array(2);
+      arr[k][0]=values[i][0];
+      arr[k][1]=values[i][1];
+      k++;
+    }
+    return arr;
+}
+module.exports = { getTopHours, getHoursForGivenName  };

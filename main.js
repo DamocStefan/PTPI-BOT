@@ -34,7 +34,9 @@ client.on('message', message => {
                 if(command === 'help') {
                     client.commands.get('help').execute(message, args);
                 }
-
+                else
+                    if(command === 'top')
+                        client.commands.get('top').execute(message, args);
 
 });
-client.login('ODg2NTcxNDQwOTczOTUwOTc2.YT3h_w.ib_JUQR_po_II4BX8rkbN6kIZmw');
+client.login('ODg2NTcxNDQwOTczOTUwOTc2.YT3h_w.BYkToZAQgbvEw5EXTIOxiDGHgn0');
