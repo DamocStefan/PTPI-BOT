@@ -39,4 +39,4 @@ client.on('message', message => {
                         client.commands.get('top').execute(message, args);
 
 });
-client.login('ODg2NTcxNDQwOTczOTUwOTc2.YT3h_w.BYkToZAQgbvEw5EXTIOxiDGHgn0');
+client.login('ODg2NTcxNDQwOTczOTUwOTc2.YT3h_w.BQ-SWa94ouLvlr5IMY1UbSjsGm0');
