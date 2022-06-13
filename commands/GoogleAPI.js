@@ -83,10 +83,12 @@ async function getHoursForGivenName(nume, project) {
 async function getTopHours(number)
 {
   let values = await getValuesFromSpreadSheet();
+  console.log(values.length);
+  values=values.slice(0, values.length-2);
   values.sort(function(a, b) {
     return parseFloat(b[1]) - parseFloat(a[1]);
   })
-  console.log(values.slice(2,number+2));
+
   return  values.slice(2,number+2);
 }
 module.exports = { getTopHours, getHoursForGivenName  };
