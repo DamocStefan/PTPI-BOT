@@ -62,7 +62,8 @@ async function getHoursForGivenName(nume, project) {
       if (getPercentageOfNameFromName(nume.normalize("NFD").replace(/\p{Diacritic}/gu, "").toLowerCase().replace(/-| /gi, ""), values[i][0].normalize("NFD").replace(/\p{Diacritic}/gu, "").toLowerCase().replace(/-| /gi, "") )) {
         if (project != "") {
           for (let j = 2; j < values[0].length; j += 2) {
-            if (getPercentageOfNameFromName(project, values[0][j].latinise().replace(/-| /gi, "").toLowerCase())) {
+            console.log(getPercentageOfNameFromName(project, values[0][j].normalize("NFD").replace(/\p{Diacritic}/gu, "").toLowerCase().replace(/-| /gi, "")));
+            if (getPercentageOfNameFromName(project, values[0][j].normalize("NFD").replace(/\p{Diacritic}/gu, "").toLowerCase().replace(/-| /gi, ""))) {
               if(Nimicto0(parseInt(values[i][j]))+Nimicto0(parseFloat(values[i][j+1]))==0){
                 console.log(values[i][0] + "are "+ values[0][j])
                 return [0, values[i][0], values[0][j]];
