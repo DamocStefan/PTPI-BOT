@@ -84,20 +84,9 @@ async function getTopHours(number)
 {
   let values = await getValuesFromSpreadSheet();
   values.sort(function(a, b) {
-    return Nimicto0(parseFloat(b[1])) - Nimicto0(parseFloat(a[1]));
+    return parseFloat(b[1]) - parseFloat(a[1]);
   })
-  var k=0;
-  let arr=new Array(number);
-  for(let i=1;i<=number;i++)
-    {
-      if((values[i][0]=="" ||values[i][0]== undefined || typeof values[i][0]== undefined))
-        number++;
-      console.log(values[i][0] + " " + values[i][1]);
-      arr[k]=new Array(2);
-      arr[k][0]=values[i][0];
-      arr[k][1]=values[i][1];
-      k++;
-    }
-    return arr;
+  console.log(values.slice(2,number+2));
+  return  values.slice(2,number+2);
 }
 module.exports = { getTopHours, getHoursForGivenName  };
