@@ -25,9 +25,7 @@ client.on('message', message => {
     const args = message.content.slice(prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
     if (command === 'ping') {
-        client.channel.createInvite()
-            .then(invite => console.log(`Created an invite with a code of ${invite.code}`))
-            .catch(console.error);
+        client.commands.get('ping').execute(message, args);
     } else 
         if (command === 'ore') {
             client.commands.get('ore').execute(message, args);
