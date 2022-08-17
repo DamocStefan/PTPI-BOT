@@ -2,7 +2,7 @@ const e = require("express");
 const getHoursFromSpreadSheet = require("./GoogleAPI");
 module.exports = {
     name: 'top',
-    description: "this is a ping command!",
+    description: "this is the top command!",
     execute(message, args) {
         getHoursFromSpreadSheet.getTopHours(parseInt(args[0])).then(res=>{
             console.log(1);
